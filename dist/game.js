@@ -2100,6 +2100,10 @@ function main() {
 
     const game = new Game(canvas);
     game.init();
+
+    // Hide the diagnostic boot message once the engine is running
+    const bootMsg = document.getElementById('boot-message');
+    if (bootMsg) bootMsg.style.display = 'none';
 }
 
 main();
