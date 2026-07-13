@@ -1,6 +1,6 @@
 /** World, maps, and NPC management. */
 
-import { loadJSON } from './utils.js';
+import { maps, npcs, skills, items } from './data_embedded.js';
 
 export class World {
     constructor() {
@@ -11,12 +11,7 @@ export class World {
     }
 
     async load() {
-        const [maps, npcs, skills, items] = await Promise.all([
-            loadJSON('src/data/maps.json'),
-            loadJSON('src/data/npcs.json'),
-            loadJSON('src/data/skills.json'),
-            loadJSON('src/data/items.json'),
-        ]);
+        // Data is embedded so the game works from file:// and GitHub Pages
         this.maps = maps;
         this.npcs = npcs;
         this.skills = skills;

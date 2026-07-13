@@ -1,7 +1,7 @@
 /** Main game controller and state machine. */
 
 import { Input } from './input.js';
-import { Renderer, VIEW_W, VIEW_H } from './renderer.js';
+import { Renderer, VIEW_W, VIEW_H, SCREEN_W, SCREEN_H } from './renderer.js';
 import { World } from './world.js';
 import { Player } from './player.js';
 import { Combat } from './combat.js';
@@ -10,6 +10,7 @@ import { UI } from './ui.js';
 import { Assets } from './assets.js';
 
 const STATE = {
+    LOADING: 'loading',
     TITLE: 'title',
     CREATE_CHAR: 'create_char',
     EXPLORE: 'explore',
@@ -29,6 +30,7 @@ export class Game {
         this.state = STATE.TITLE;
         this.player = null;
         this.combat = null;
+        this.loadError = null;
 
         this.menuOptions = [];
         this.menuIndex = 0;
@@ -51,15 +53,32 @@ export class Game {
         };
     }
 
-    async init() {
+    init() {
+        // Start the loop immediately so the screen is never blank
+        this.state = STATE.LOADING;
+        this.loop();
+
+        // Load assets and data in the background
+        this._loadResources().catch(err => {
+            console.error('Failed to load resources:', err);
+            this.loadError = err.message || '资源加载失败';
+        });
+    }
+
+    async _loadResources() {
         await this.assets.load();
         await this.world.load();
-        this.loop();
+        this.state = STATE.TITLE;
     }
 
     loop() {
-        this.update();
-        this.draw();
+        try {
+            this.update();
+            this.draw();
+        } catch (err) {
+            console.error('Game loop error:', err);
+            this.loadError = err.message || '运行错误';
+        }
         this.input.update();
         requestAnimationFrame(() => this.loop());
     }
@@ -68,6 +87,12 @@ export class Game {
         if (this.moveCooldown > 0) this.moveCooldown--;
 
         switch (this.state) {
+            case STATE.LOADING:
+                // Wait for resources; any key press shows error if failed
+                if (this.loadError) {
+                    this.state = STATE.TITLE; // will draw error on title screen
+                }
+                break;
             case STATE.TITLE:
                 this._updateTitle();
                 break;
@@ -93,6 +118,9 @@ export class Game {
         this.renderer.clear();
 
         switch (this.state) {
+            case STATE.LOADING:
+                this._drawLoading();
+                break;
             case STATE.TITLE:
                 this._drawTitle();
                 break;
@@ -135,16 +163,42 @@ export class Game {
         }
     }
 
+    _drawLoading() {
+        this.renderer.ctx.fillStyle = '#1a1a1a';
+        this.renderer.ctx.fillRect(0, 0, SCREEN_W, SCREEN_H);
+        this.renderer.ctx.fillStyle = '#c8d0a0';
+        this.renderer.ctx.font = '14px "Microsoft YaHei", monospace';
+        if (this.loadError) {
+            this.renderer.ctx.fillText('加载失败', 120, 90);
+            this.renderer.ctx.font = '9px "Microsoft YaHei", monospace';
+            this.renderer.ctx.fillText(this.loadError, 20, 120);
+            this.renderer.ctx.fillText('请用本地服务器打开，或刷新重试', 50, 150);
+        } else {
+            this.renderer.ctx.fillText('正在加载...', 110, 110);
+            this.renderer.ctx.font = '9px "Microsoft YaHei", monospace';
+            this.renderer.ctx.fillText('首次加载可能需要几秒', 90, 140);
+        }
+    }
+
     _drawTitle() {
         this.renderer.ctx.fillStyle = '#1a1a1a';
-        this.renderer.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.renderer.ctx.fillRect(0, 0, SCREEN_W, SCREEN_H);
         this.renderer.ctx.fillStyle = '#c8d0a0';
         this.renderer.ctx.font = '20px "Microsoft YaHei", monospace';
         this.renderer.ctx.fillText('英雄坛说', 110, 80);
         this.renderer.ctx.font = '10px "Microsoft YaHei", monospace';
         this.renderer.ctx.fillText('Hero Altar', 128, 100);
-        this.renderer.ctx.fillText('按 A / 空格 开始游戏', 90, 160);
-        this.renderer.ctx.fillText('按 B / Esc 创建新角色', 86, 180);
+
+        if (this.loadError) {
+            this.renderer.ctx.fillStyle = '#c8d0a0';
+            this.renderer.ctx.font = '10px "Microsoft YaHei", monospace';
+            this.renderer.ctx.fillText('资源加载失败，部分功能不可用', 60, 140);
+            this.renderer.ctx.fillText(this.loadError, 20, 160);
+            this.renderer.ctx.fillText('建议用 python -m http.server 启动后访问', 30, 180);
+        } else {
+            this.renderer.ctx.fillText('按 A / 空格 开始游戏', 90, 160);
+            this.renderer.ctx.fillText('按 B / Esc 创建新角色', 86, 180);
+        }
     }
 
     // =================== CREATE CHAR ===================
