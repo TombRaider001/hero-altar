@@ -7,6 +7,7 @@ import { Player } from './player.js';
 import { Combat } from './combat.js';
 import { Storage } from './storage.js';
 import { UI } from './ui.js';
+import { Assets } from './assets.js';
 
 const STATE = {
     TITLE: 'title',
@@ -20,7 +21,8 @@ const STATE = {
 export class Game {
     constructor(canvas) {
         this.canvas = canvas;
-        this.renderer = new Renderer(canvas);
+        this.assets = new Assets();
+        this.renderer = new Renderer(canvas, this.assets);
         this.input = new Input();
         this.world = new World();
 
@@ -50,6 +52,7 @@ export class Game {
     }
 
     async init() {
+        await this.assets.load();
         await this.world.load();
         this.loop();
     }

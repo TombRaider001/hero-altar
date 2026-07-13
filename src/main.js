@@ -9,12 +9,10 @@ function main() {
         return;
     }
 
-    // Scale canvas for high-DPI displays
+    // Scale canvas for high-DPI displays; CSS handles display size
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = 320 * dpr;
     canvas.height = 240 * dpr;
-    canvas.style.width = '320px';
-    canvas.style.height = '240px';
 
     const ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
