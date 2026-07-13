@@ -15,13 +15,21 @@ https://TombRaider001.github.io/hero-altar/
 
 ## 本地运行
 
-直接用浏览器打开 `index.html` 即可。
+直接用浏览器打开 `index.html` 即可（已打包成 `dist/game.js`，支持 `file://` 协议）。
 
 或者启动一个本地服务器：
 
 ```bash
 python -m http.server 8000
 # 然后访问 http://localhost:8000
+```
+
+## 修改源码后重新打包
+
+如果改了 `src/` 里的代码，需要重新生成 `dist/game.js`：
+
+```bash
+python build.py
 ```
 
 ## 操作方式
