@@ -10,6 +10,7 @@ FILES = [
     'src/world.js',
     'src/combat.js',
     'src/ui.js',
+    'src/assets.js',
     'src/renderer.js',
     'src/game.js',
     'src/main.js',

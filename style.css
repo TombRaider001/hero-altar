@@ -71,6 +71,19 @@ html, body {
     pointer-events: auto;
 }
 
+#boot-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #c8d0a0;
+    font-size: 12px;
+    text-align: center;
+    pointer-events: none;
+    z-index: 10;
+    text-shadow: 1px 1px 0 #1a1a1a;
+}
+
 /* Mobile controls */
 #mobile-controls {
     display: none;

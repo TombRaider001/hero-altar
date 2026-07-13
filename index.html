@@ -10,6 +10,7 @@
     <div id="game-container">
         <canvas id="game-canvas" width="320" height="240"></canvas>
         <div id="ui-layer"></div>
+        <div id="boot-message">正在启动...</div>
     </div>
 
     <div id="mobile-controls">
@@ -27,6 +28,35 @@
         </div>
     </div>
 
-    <script src="dist/game.js"></script>
+    <!-- Diagnostic script: runs before game.js to prove JS is active -->
+    <script>
+        (function() {
+            const canvas = document.getElementById('game-canvas');
+            const bootMsg = document.getElementById('boot-message');
+            function show(msg) {
+                if (bootMsg) bootMsg.textContent = msg;
+                if (canvas) {
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#1a1a1a';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#c8d0a0';
+                    ctx.font = '12px monospace';
+                    const lines = String(msg).split('\n');
+                    let y = 40;
+                    lines.forEach(function(line) {
+                        ctx.fillText(line, 10, y);
+                        y += 16;
+                    });
+                }
+            }
+            window.__heroAltarShow = show;
+            show('引擎初始化中...');
+            window.onerror = function(msg, url, line, col, err) {
+                show('运行错误：\n' + msg + '\n@' + (url || '') + ':' + line + ':' + col);
+            };
+        })();
+    </script>
+
+    <script src="dist/game.js" onerror="window.__heroAltarShow && window.__heroAltarShow('游戏脚本加载失败\n请检查 dist/game.js 是否存在\n或尝试用本地服务器打开')" defer></script>
 </body>
 </html>
