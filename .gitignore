@@ -16,8 +16,9 @@ npm-debug.log*
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Build output (except our bundled game)
+dist/*
+!dist/game.js
 build/
 
 # Game saves are stored in browser localStorage, no files here
