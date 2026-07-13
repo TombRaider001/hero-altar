@@ -1,0 +1,62 @@
+{
+  "basic_fist": {
+    "id": "basic_fist",
+    "name": "基本拳脚",
+    "type": "unarmed",
+    "description": "最基本的拳脚功夫，是练习高级武功的基础。",
+    "max_level": 100,
+    "power_per_level": 1.0,
+    "cost_mp": 0,
+    "special_effect": null
+  },
+  "basic_sword": {
+    "id": "basic_sword",
+    "name": "基本剑法",
+    "type": "sword",
+    "description": "剑法入门，招式简单实用。",
+    "max_level": 100,
+    "power_per_level": 1.2,
+    "cost_mp": 0,
+    "special_effect": null
+  },
+  "basic_blade": {
+    "id": "basic_blade",
+    "name": "基本刀法",
+    "type": "blade",
+    "description": "刀法入门，重在劈砍。",
+    "max_level": 100,
+    "power_per_level": 1.2,
+    "cost_mp": 0,
+    "special_effect": null
+  },
+  "basic_internal": {
+    "id": "basic_internal",
+    "name": "基本内功",
+    "type": "internal",
+    "description": "内功基础，能增加内力上限和恢复速度。",
+    "max_level": 100,
+    "power_per_level": 0.5,
+    "cost_mp": 0,
+    "special_effect": "increase_mp"
+  },
+  "basic_dodge": {
+    "id": "basic_dodge",
+    "name": "基本轻功",
+    "type": "dodge",
+    "description": "提升闪避能力的轻功基础。",
+    "max_level": 100,
+    "power_per_level": 0.8,
+    "cost_mp": 0,
+    "special_effect": "increase_dodge"
+  },
+  "basic_parry": {
+    "id": "basic_parry",
+    "name": "基本招架",
+    "type": "parry",
+    "description": "提升防御能力的招架基础。",
+    "max_level": 100,
+    "power_per_level": 0.8,
+    "cost_mp": 0,
+    "special_effect": "increase_defense"
+  }
+}

@@ -1,29 +1,6 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Virtual environments
-venv/
-ENV/
-env/
+# OS
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
@@ -32,10 +9,17 @@ env/
 *.swo
 *~
 
-# Game saves (keep directory but not save files)
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Game saves are stored in browser localStorage, no files here
 saves/*.json
 saves/*.dat
-
-# OS
-.DS_Store
-Thumbs.db

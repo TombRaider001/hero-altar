@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>英雄坛说 · Hero Altar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas" width="320" height="240"></canvas>
+        <div id="ui-layer"></div>
+    </div>
+
+    <div id="mobile-controls">
+        <div id="dpad">
+            <button id="btn-up" class="dpad-btn">▲</button>
+            <div class="dpad-middle">
+                <button id="btn-left" class="dpad-btn">◀</button>
+                <button id="btn-right" class="dpad-btn">▶</button>
+            </div>
+            <button id="btn-down" class="dpad-btn">▼</button>
+        </div>
+        <div id="action-buttons">
+            <button id="btn-a" class="action-btn">A</button>
+            <button id="btn-b" class="action-btn">B</button>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
