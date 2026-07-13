@@ -1,0 +1,94 @@
+{
+  "walking_stick": {
+    "id": "walking_stick",
+    "name": "拐杖",
+    "type": "quest",
+    "description": "一根结实的木拐杖，适合老人使用。",
+    "effect": null,
+    "value": 0,
+    "stackable": false
+  },
+  "gold_coin": {
+    "id": "gold_coin",
+    "name": "碎银子",
+    "type": "material",
+    "description": "一小块银子，可以当钱用。",
+    "effect": null,
+    "value": 100,
+    "stackable": true
+  },
+  "copper_coin": {
+    "id": "copper_coin",
+    "name": "铜钱",
+    "type": "currency",
+    "description": "通用的铜钱。",
+    "effect": null,
+    "value": 1,
+    "stackable": true
+  },
+  "healing_pill": {
+    "id": "healing_pill",
+    "name": "金创药",
+    "type": "consumable",
+    "description": "常见的伤药，能恢复一些气血。",
+    "effect": {"type": "heal_hp", "value": 50},
+    "value": 30,
+    "stackable": true
+  },
+  "steamed_bun": {
+    "id": "steamed_bun",
+    "name": "肉包子",
+    "type": "consumable",
+    "description": "热腾腾的肉包子，能恢复少量气血。",
+    "effect": {"type": "heal_hp", "value": 20},
+    "value": 10,
+    "stackable": true
+  },
+  "wine": {
+    "id": "wine",
+    "name": "烧刀子",
+    "type": "consumable",
+    "description": "烈酒，能恢复少量内力。",
+    "effect": {"type": "heal_mp", "value": 20},
+    "value": 50,
+    "stackable": true
+  },
+  "wooden_stick": {
+    "id": "wooden_stick",
+    "name": "木棍",
+    "type": "weapon",
+    "description": "一根结实的木棍。",
+    "effect": {"attack": 5},
+    "value": 40,
+    "stackable": false
+  },
+  "iron_sword": {
+    "id": "iron_sword",
+    "name": "铁剑",
+    "type": "weapon",
+    "description": "普通的铁剑，比木棍锋利多了。",
+    "effect": {"attack": 12},
+    "value": 150,
+    "stackable": false
+  },
+  "cloth_shoes": {
+    "id": "cloth_shoes",
+    "name": "布鞋",
+    "type": "armor",
+    "slot": "feet",
+    "description": "一双普通的布鞋，穿着轻便。",
+    "effect": {"speed": 2},
+    "value": 30,
+    "stackable": false
+  },
+  "cloth_clothes": {
+    "id": "cloth_clothes",
+    "name": "布衣",
+    "type": "armor",
+    "slot": "body",
+    "description": "一件粗布衣裳，能提供一点防护。",
+    "effect": {"defense": 3},
+    "value": 50,
+    "stackable": false
+  }
+}

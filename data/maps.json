@@ -1,0 +1,50 @@
+{
+  "taiping_town_center": {
+    "id": "taiping_town_center",
+    "name": "太平镇",
+    "description": "一座宁静的小镇，青石板路两旁是低矮的民居。",
+    "connections": {
+      "east": "taiping_east_suburb",
+      "west": "taiping_west_suburb",
+      "north": "taiping_inn",
+      "south": "taiping_dojo"
+    },
+    "npcs": ["old_lady", "village_chief", "thug_a"]
+  },
+  "taiping_inn": {
+    "id": "taiping_inn",
+    "name": "悦来客栈",
+    "description": "镇上唯一的客栈，门口挂着褪色的酒旗。",
+    "connections": {
+      "south": "taiping_town_center"
+    },
+    "npcs": ["waiter"]
+  },
+  "taiping_dojo": {
+    "id": "taiping_dojo",
+    "name": "振威武馆",
+    "description": "武馆里传来呼喝声，几个弟子正在练功。",
+    "connections": {
+      "north": "taiping_town_center"
+    },
+    "npcs": ["master_li"]
+  },
+  "taiping_east_suburb": {
+    "id": "taiping_east_suburb",
+    "name": "镇东郊",
+    "description": "一片荒地，偶有野狗出没。",
+    "connections": {
+      "west": "taiping_town_center"
+    },
+    "npcs": ["thug_b"]
+  },
+  "taiping_west_suburb": {
+    "id": "taiping_west_suburb",
+    "name": "镇西郊",
+    "description": "西边是一片小树林，听说有强盗出没。",
+    "connections": {
+      "east": "taiping_town_center"
+    },
+    "npcs": ["bandit"]
+  }
+}
